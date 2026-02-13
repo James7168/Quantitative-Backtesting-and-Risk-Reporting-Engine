@@ -1,0 +1,9 @@
+{
+  "cash": "10000",
+  "data": "data/sample_prices.csv",
+  "fee_per_trade": "1.00",
+  "fill_trade_on": "open",
+  "quantity": "1",
+  "slippage_bps": "5",
+  "symbol": "AAPL"
+}
