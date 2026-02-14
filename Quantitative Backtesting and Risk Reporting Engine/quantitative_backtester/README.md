@@ -29,21 +29,7 @@ Provides a transparent and testable framework to evaluate simple rule-based stra
 
 The architecture intentionally separates strategy, execution, and portfolio logic, allowing additional strategies or execution models to be added without modifying core state logic.
 
-Bar data
-   ↓
-Strategy
-   ↓
-Signal (BUY / SELL / HOLD)
-   ↓
-Order
-   ↓
-Execution model
-   ↓
-Trade
-   ↓
-Portfolio update
-   ↓
-Metrics & Report
+Bar data -> Strategy -> Signal (BUY / SELL / HOLD) -> Order -> Execution model -> Trade -> Portfolio update -> Metrics & Report
 
 ---
 
