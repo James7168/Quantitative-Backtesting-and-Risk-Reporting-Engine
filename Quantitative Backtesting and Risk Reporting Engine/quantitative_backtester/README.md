@@ -10,10 +10,10 @@ This project is designed as an educational but production-inspired codebase: str
 
 ## Project Overview
 
-**What it solves**
+**What it solves**:
 Provides a transparent and testable framework to evaluate simple rule-based strategies with realistic execution frictions.
 
-**Target scope**
+**Target scope**:
 - Single asset symbol.
 - Daily bars.
 - Rule-based strategies.
