@@ -10,9 +10,6 @@ This project is designed as an educational but production-inspired codebase: str
 
 ## Project Overview
 
-**What it is**
-A small backtesting pipeline: **CSV -> Bars -> Strategy -> Signal -> Order -> Execution -> Trade -> Portfolio -> Metrics -> Report**
-
 **What it solves**
 Provides a transparent and testable framework to evaluate simple rule-based strategies with realistic execution frictions.
 
