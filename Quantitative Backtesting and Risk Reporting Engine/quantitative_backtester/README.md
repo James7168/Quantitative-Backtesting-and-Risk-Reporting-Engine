@@ -141,3 +141,18 @@ python -m backtester.cli \
   --slippage-bps 0 \
   --fee 0 \
   --output output
+
+---
+
+## Tests
+
+### Unit tests
+- Data ingestion and validation.
+- Strategy logic and crossover detection.
+- Execution model.
+- Portfolio state transitions and mark-to-market.
+- Performance metrics.
+
+### Run unit tests
+
+pytest -q
