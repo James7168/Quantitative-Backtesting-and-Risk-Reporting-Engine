@@ -4,7 +4,7 @@ A lightweight, deterministic backtesting engine for **single-instrument**, **dai
 
 It loads OHLCV data from CSV, generates trading signals, converts signals into orders, simulates fills with slippage/fees, updates a portfolio, and exports performance metrics + run artifacts.
 
-This project is designed with production-inspired seperation of concerns, strong domain modelling, explicit timelines, and tests across core modules.
+This project is designed with production-inspired separation of concerns, strong domain modelling, explicit timelines, and tests across core modules.
 
 ---
 
