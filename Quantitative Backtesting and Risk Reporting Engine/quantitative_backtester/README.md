@@ -4,7 +4,7 @@ A lightweight, deterministic backtesting engine for **single-instrument**, **dai
 
 It loads OHLCV data from CSV, generates trading signals, converts signals into orders, simulates fills with slippage/fees, updates a portfolio, and exports performance metrics + run artifacts.
 
-This project is designed as an educational but production-inspired codebase: strong domain modelling, explicit timelines, and tests across core modules.
+This project is designed with production-inspired seperation of concerns, strong domain modelling, explicit timelines, and tests across core modules.
 
 ---
 
@@ -28,14 +28,16 @@ The architecture intentionally separates strategy, execution, and portfolio logi
 
 Bar data -> Strategy -> Signal (BUY / SELL / HOLD) -> Order -> Execution model -> Trade -> Portfolio update -> Metrics & Report
 
+The system is designed as a deterministic state machine operating over a time-ordered sequence of market data. Portfolio updates are pure state transitions triggered only by executed trades, ensuring temporal consistency and preventing implicit side effects. The modular separation of strategy, execution, and portfolio logic allows alternative trading rules or execution models to be introduced without altering core state behaviour.
+
 ---
 
-### Timeline conventions (no lookahead bias)
+### Timeline conventions
 
-- Signals are generated using only bars available at decision time (`bars[:i]`).
-- Orders are timestamped with the prior bar timestamp (decision time).
-- Trades are executed using the next bar (fill time) on open/close per configuration.
-- Equity is marked to market using bar close prices (end-of-bar valuation).
+- Signals are generated using only bars available at decision time.
+- Orders are timestamped with the prior bar timestamp.
+- Trades are executed using the next bar on open/close per configuration.
+- Equity is marked to market using bar close prices.
 
 ---
 
@@ -47,17 +49,17 @@ The system operates on strongly typed domain objects (`Bar`, `Order`, `Trade`, `
 Historical data is parsed into validated `Bar` objects that enforce OHLCV invariants at construction time.  
 Downstream components derive values directly from these objects, keeping financial meaning explicit and avoiding fragile index-based logic.
 
-### Data ingestion (custom CSV loader)
+### Data ingestion
 
 Core ingestion avoids pandas and instead implements a strict CSV loader that:
-- validates schema (required columns),
+- validates schema,
 - parses types explicitly (`datetime`, `Decimal`, `int`),
-- enforces ordering and uniqueness (sorted timestamps, no duplicates),
+- enforces ordering and uniqueness,
 - rejects invalid rows with row-number context.
 
 This prioritises correctness, determinism, and transparency over convenience.
 
-### Precision handling (Decimal)
+### Precision handling
 
 Prices, quantities, and cash are represented with `Decimal` to reduce floating point drift.  
 This is important in financial systems where rounding and cumulative error can meaningfully distort results.
@@ -70,7 +72,7 @@ The engine is designed to behave identically on repeated runs:
 - validated inputs,
 - portfolio state changes are only triggered by explicit trades.
 
-Many dataclasses are frozen to enforce immutability where appropriate (domain models, configuration-like objects).
+Many dataclasses are frozen to enforce immutability where appropriate.
 
 ### Sharpe ratio assumption
 
@@ -81,14 +83,14 @@ This can be extended by subtracting a time-aligned risk-free return series.
 
 ## Module Responsibilities
 
-- `data.py`: CSV ingestion + validation into `Bar`
-- `models.py`: domain language (Bar, Order, Trade, Position, etc.)
-- `strategy.py`: signal generation only (e.g., SMA crossover)
-- `execution.py`: fills, slippage, fees, fill price selection
-- `portfolio.py`: state transitions (cash, positions, trades, equity curve)
-- `metrics.py`: performance and risk metrics derived from equity curve
-- `report.py`: export artifacts (CSV/JSON/MD + optional plot)
-- `cli.py`: orchestration (ties everything together)
+- `data.py`: CSV ingestion & validation into `Bar`.
+- `models.py`: domain language. (Bar, Order, Trade, Position, etc.)
+- `strategy.py`: signal generation only. (SMA crossover)
+- `execution.py`: fills, slippage, fees, fill price selection.
+- `portfolio.py`: state transitions. (cash, positions, trades, equity curve)
+- `metrics.py`: performance and risk metrics derived from equity curve.
+- `report.py`: export artifacts. (CSV/JSON/MD & optional plot)
+- `cli.py`: ties everything together.
 
 ---
 
@@ -98,10 +100,10 @@ This project is intentionally scoped to stay simple and deterministic:
 
 - Single instrument per run.
 - Long-only position model (no shorting / leverage).
-- Daily bar data (no intraday microstructure modelling).
+- Daily bar data.
 - No corporate actions (splits/dividends).
 - No live data feeds.
-- No transaction cost models beyond fixed fees + slippage in bps.
+- No transaction cost models beyond fixed fees & slippage in bps.
 
 ---
 
