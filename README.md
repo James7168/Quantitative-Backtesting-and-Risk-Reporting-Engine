@@ -107,6 +107,29 @@ This project is intentionally scoped to stay simple and deterministic:
 
 ---
 
+## Future Extensions
+
+The current implementation intentionally prioritises determinism, clarity of state transitions, and separation of concerns. Several extensions could be explored to deepen the quantitative and algorithmic foundations of the system:
+
+- **Risk-based position sizing**  
+  Replace fixed trade quantities with dynamic sizing derived from portfolio equity and rolling volatility estimates, formalising capital allocation under explicit risk constraints.
+
+- **Online volatility estimation**  
+  Implement incremental (O(n)) rolling statistics to avoid repeated window recomputation and improve scalability for larger datasets.
+
+- **Drawdown-aware allocation**  
+  Introduce capital scaling based on peak-to-trough drawdown, modelling adaptive risk exposure under adverse conditions.
+
+- **Multi-asset portfolio generalisation**  
+  Extend the state model to support correlated instruments and portfolio-level capital constraints.
+
+- **Event-driven execution engine**  
+  Refactor the bar-iteration loop into an event-based architecture to support higher-frequency data and alternative market data feeds.
+
+These extensions would allow the system to evolve from a single-strategy backtester into a more generalised quantitative research framework.
+
+---
+
 ## How to Run
 
 ### Install pip
