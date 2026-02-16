@@ -26,7 +26,7 @@ Provides a transparent and testable framework to evaluate simple rule-based stra
 
 The architecture intentionally separates strategy, execution, and portfolio logic, allowing additional strategies or execution models to be added without modifying core state logic.
 
-<img width="3500" height="1000" alt="QBE_Architecture" src="https://github.com/user-attachments/assets/9a24e7e7-bd91-42d6-8c9e-fe57603ba677" />
+<img width="3222" height="381" alt="QBE_Architecture" src="https://github.com/user-attachments/assets/9a24e7e7-bd91-42d6-8c9e-fe57603ba677" />
 
 Bar data -> Strategy -> Signal (BUY / SELL / HOLD) -> Order -> Execution model -> Trade -> Portfolio update -> Metrics & Report
 
