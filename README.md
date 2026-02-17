@@ -1,6 +1,6 @@
 # Quantitative Backtesting and Risk Reporting Engine
 
-A lightweight, deterministic backtesting engine for **single-instrument**, **daily-bar** strategies.  
+A quantitative backtesting framework for modelling and evaluating single-instrument trading strategies on daily bar data.
 
 It loads OHLCV data from CSV, generates trading signals, converts signals into orders, simulates fills with slippage/fees, updates a portfolio, and exports performance metrics + run artifacts.
 
