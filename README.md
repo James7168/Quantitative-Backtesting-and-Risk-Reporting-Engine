@@ -52,12 +52,12 @@ Downstream components derive values directly from these objects, keeping financi
 ### Data ingestion
 
 Core ingestion avoids pandas and instead implements a strict CSV loader that:
-- validates schema,
-- parses types explicitly (`datetime`, `Decimal`, `int`),
-- enforces ordering and uniqueness,
+- validates schema.
+- parses types explicitly. (`datetime`, `Decimal`, `int`)
+- enforces ordering and uniqueness.
 - rejects invalid rows with row-number context.
 
-This prioritises correctness, determinism, and transparency over convenience.
+The ingestion pipeline deliberately prioritises validation guarantees, reproducible execution, and structural clarity over convenience abstractions.
 
 ### Precision handling
 
