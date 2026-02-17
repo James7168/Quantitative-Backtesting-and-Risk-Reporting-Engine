@@ -28,7 +28,7 @@ The architecture intentionally separates strategy, execution, and portfolio logi
 
 <img width="3222" height="381" alt="QBE_Architecture" src="https://github.com/user-attachments/assets/c56ce2a0-080d-443e-bc89-98178fe741d9" />
 
-The system is designed as a deterministic state machine operating over a time-ordered sequence of market data. Portfolio updates are pure state transitions triggered only by executed trades, ensuring temporal consistency and preventing implicit side effects. The modular separation of strategy, execution, and portfolio logic allows alternative trading rules or execution models to be introduced without altering core state behaviour.
+The system is designed as a state-transition model operating over a time-ordered sequence of market data. Portfolio updates are pure state transitions triggered only by executed trades, ensuring temporal consistency and preventing implicit side effects. The modular separation of strategy, execution, and portfolio logic allows alternative trading rules or execution models to be introduced without altering core state behaviour.
 
 ---
 
