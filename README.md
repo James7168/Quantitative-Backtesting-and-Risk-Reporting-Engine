@@ -96,7 +96,7 @@ This can be extended by subtracting a time-aligned risk-free return series.
 
 ## Limitations / Scope
 
-This project is intentionally scoped to stay simple and deterministic:
+This project is intentionally scoped to stay simple:
 
 - Single instrument per run.
 - Long-only position model (no shorting / leverage).
