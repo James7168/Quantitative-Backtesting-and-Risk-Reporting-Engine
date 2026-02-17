@@ -109,7 +109,7 @@ This project is intentionally scoped to stay simple and deterministic:
 
 ## Future Extensions
 
-The current implementation intentionally prioritises determinism, clarity of state transitions, and separation of concerns. Several extensions could be explored to deepen the quantitative and algorithmic foundations of the system:
+Several extensions could be explored to deepen the quantitative and algorithmic foundations of the system:
 
 - **Risk-based position sizing**  
   Replace fixed trade quantities with dynamic sizing derived from portfolio equity and rolling volatility estimates, formalising capital allocation under explicit risk constraints.
