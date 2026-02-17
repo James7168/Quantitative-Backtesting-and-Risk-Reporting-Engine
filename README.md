@@ -24,11 +24,10 @@ Provides a transparent and testable framework to evaluate simple rule-based stra
 
 ## Architecture Overview
 
-The architecture intentionally separates strategy, execution, and portfolio logic, allowing additional strategies or execution models to be added without modifying core state logic.
+The system is designed as a state-transition model operating over a time-ordered sequence of market data. Portfolio state at time t depends only on the prior state and current inputs, eliminating lookahead bias and implicit side effects. Strategy modules generate signals without mutating portfolio state. Execution models translate orders into trades with explicit friction modelling. The portfolio layer applies trades and performs mark-to-market valuation, producing an auditable equity curve.
+This layered separation enables new strategies or execution assumptions to be introduced without altering portfolio state logic.
 
 <img width="3222" height="381" alt="QBE_Architecture" src="https://github.com/user-attachments/assets/c56ce2a0-080d-443e-bc89-98178fe741d9" />
-
-The system is designed as a state-transition model operating over a time-ordered sequence of market data. Portfolio state at time t depends only on the prior state and current inputs, eliminating lookahead bias and implicit side effects. State transitions are triggered exclusively by executed trades and explicit mark-to-market operations. The modular separation of strategy, execution, and portfolio components allows alternative trading rules or execution models to be introduced without modifying core state logic.
 
 ---
 
