@@ -52,10 +52,10 @@ Downstream components derive values directly from these objects, keeping financi
 ### Data ingestion
 
 Core ingestion avoids pandas and instead implements a strict CSV loader that:
-- validates schema.
-- parses types explicitly. (`datetime`, `Decimal`, `int`)
-- enforces ordering and uniqueness.
-- rejects invalid rows with row-number context.
+- Validates schema.
+- Parses types explicitly. (`datetime`, `Decimal`, `int`)
+- Enforces ordering and uniqueness.
+- Rejects invalid rows with row-number context.
 
 The ingestion pipeline deliberately prioritises validation guarantees, reproducible execution, and structural clarity over convenience abstractions.
 
@@ -64,13 +64,13 @@ The ingestion pipeline deliberately prioritises validation guarantees, reproduci
 Prices, quantities, and cash are represented with `Decimal` to reduce floating point drift.  
 This is important in financial systems where rounding and cumulative error can meaningfully distort results.
 
-### Determinism and explicit state transitions
+### Predictability and explicit state transitions
 
 The engine is designed to behave identically on repeated runs:
-- explicit iteration order over bars,
-- no hidden randomness,
-- validated inputs,
-- portfolio state changes are only triggered by explicit trades.
+- Explicit iteration order over bars.
+- No hidden randomness.
+- Validated inputs.
+- Portfolio state changes are only triggered by explicit trades.
 
 Many dataclasses are frozen to enforce immutability where appropriate.
 
